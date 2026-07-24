@@ -1,2 +1,0 @@
-# Kelsys-Labs
-Empresa
