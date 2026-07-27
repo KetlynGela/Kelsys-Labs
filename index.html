@@ -300,6 +300,39 @@
   .step h4{font-size:16px;margin-bottom:8px;}
   .step p{font-size:13.5px;color:var(--muted);}
 
+
+  /* TECNOLOGIAS */
+  #tecnologias{background:var(--bg);}
+  .tech-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .tech-card{
+    min-height:120px;
+    padding:24px 18px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:linear-gradient(180deg,var(--surface),var(--bg));
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-align:center;
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+  }
+  .tech-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--blue);
+    background:var(--surface-2);
+  }
+  .tech-icon{font-size:28px;}
+  .tech-card h3{font-size:15px;}
+  .tech-card p{font-size:12px;color:var(--muted);}
+  @media (max-width:800px){.tech-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:480px){.tech-grid{grid-template-columns:1fr;}}
+
   /* CAPACIDADES (replacing fake-portfolio with honest demonstration section) */
   .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   @media (max-width:760px){.cap-grid{grid-template-columns:1fr;}}
@@ -432,6 +465,7 @@
       <a href="#servicos">Serviços</a>
       <a href="#sobre">Sobre</a>
       <a href="#processo">Processo</a>
+      <a href="#tecnologias">Tecnologias</a>
       <a href="#capacidades">Capacidades</a>
     </div>
     <div class="nav-right">
@@ -443,6 +477,7 @@
     <a href="#servicos">Serviços</a>
     <a href="#sobre">Sobre</a>
     <a href="#processo">Processo</a>
+    <a href="#tecnologias">Tecnologias</a>
     <a href="#capacidades">Capacidades</a>
     <a href="#contato">Solicitar orçamento</a>
   </div>
@@ -588,6 +623,61 @@
     </div>
   </section>
 
+
+  <!-- TECNOLOGIAS -->
+  <section id="tecnologias">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag mono">// TECNOLOGIAS</span>
+        <h2>Ferramentas escolhidas para cada projeto</h2>
+        <p>A tecnologia é definida conforme o objetivo, o orçamento e a necessidade de crescimento de cada solução.</p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon">🌐</div>
+          <h3>HTML, CSS e JavaScript</h3>
+          <p>Sites rápidos e responsivos</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">📱</div>
+          <h3>Flutter</h3>
+          <p>Aplicativos para Android e iOS</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🐍</div>
+          <h3>Python</h3>
+          <p>Automação, dados e inteligência artificial</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🤖</div>
+          <h3>Inteligência Artificial</h3>
+          <p>Assistentes e fluxos inteligentes</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🔥</div>
+          <h3>Firebase</h3>
+          <p>Banco de dados e autenticação</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🔗</div>
+          <h3>APIs</h3>
+          <p>Integrações entre plataformas</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">☁️</div>
+          <h3>Netlify e Cloud</h3>
+          <p>Publicação e hospedagem</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🎨</div>
+          <h3>Design responsivo</h3>
+          <p>Experiência adaptada a cada tela</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CAPACIDADES (honesto: sem estudos de caso fictícios) -->
   <section id="capacidades">
     <div class="container">
@@ -705,7 +795,7 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReduced) {
     const revealTargets = document.querySelectorAll(
-      '.section-head, .service-card, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
+      '.section-head, .service-card, .tech-card, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
     );
     revealTargets.forEach(el => el.classList.add('reveal-init'));
     const io = new IntersectionObserver((entries) => {
