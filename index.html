@@ -333,6 +333,180 @@
   @media (max-width:800px){.tech-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:480px){.tech-grid{grid-template-columns:1fr;}}
 
+
+  /* PROJETO EM DESTAQUE — LEMBRA+ */
+  #projeto-lembra{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(59,123,255,.10), transparent 32%),
+      radial-gradient(circle at 85% 80%, rgba(139,63,251,.10), transparent 35%),
+      var(--surface);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+
+  .project-showcase{
+    display:grid;
+    grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr);
+    gap:56px;
+    align-items:center;
+  }
+
+  .project-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:18px;
+    padding:7px 12px;
+    border:1px solid rgba(43,232,153,.28);
+    border-radius:999px;
+    background:rgba(43,232,153,.07);
+    color:var(--accent);
+    font-size:11px;
+  }
+
+  .project-copy h2{
+    font-size:clamp(34px,5vw,54px);
+    line-height:1.02;
+    margin-bottom:18px;
+  }
+
+  .project-copy h2 span{
+    background:linear-gradient(90deg,#ff4a4a,#b40000);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .project-lead{
+    color:var(--muted);
+    font-size:16px;
+    margin-bottom:26px;
+  }
+
+  .project-features{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+    margin-bottom:28px;
+  }
+
+  .project-feature{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(5,7,13,.55);
+    color:var(--text);
+    font-size:13px;
+  }
+
+  .project-feature span{
+    width:24px;
+    height:24px;
+    display:grid;
+    place-items:center;
+    border-radius:8px;
+    background:rgba(59,123,255,.12);
+    flex:0 0 auto;
+  }
+
+  .project-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-bottom:30px;
+  }
+
+  .project-meta span{
+    padding:7px 11px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--muted);
+    font-size:11px;
+  }
+
+  .project-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .project-actions a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .phone-gallery{
+    position:relative;
+    min-height:590px;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:18px;
+    align-items:center;
+  }
+
+  .phone-shot{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:28px;
+    background:var(--bg);
+    box-shadow:0 24px 60px rgba(0,0,0,.35);
+    transform:translateY(0);
+    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  }
+
+  .phone-shot:nth-child(2),
+  .phone-shot:nth-child(4){
+    transform:translateY(34px);
+  }
+
+  .phone-shot:hover{
+    transform:translateY(-7px) scale(1.015);
+    border-color:rgba(59,123,255,.65);
+    box-shadow:0 30px 70px rgba(59,123,255,.14);
+    z-index:2;
+  }
+
+  .phone-shot:nth-child(2):hover,
+  .phone-shot:nth-child(4):hover{
+    transform:translateY(27px) scale(1.015);
+  }
+
+  .phone-shot img{
+    width:100%;
+    height:330px;
+    display:block;
+    object-fit:cover;
+    object-position:top;
+  }
+
+  .phone-shot figcaption{
+    padding:12px 14px;
+    color:var(--muted);
+    font-size:11px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:900px){
+    .project-showcase{grid-template-columns:1fr;}
+    .phone-gallery{max-width:680px;margin:0 auto;width:100%;}
+  }
+
+  @media (max-width:560px){
+    .project-features{grid-template-columns:1fr;}
+    .phone-gallery{min-height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+    .phone-shot,.phone-shot:nth-child(2),.phone-shot:nth-child(4){transform:none;}
+    .phone-shot:hover,.phone-shot:nth-child(2):hover,.phone-shot:nth-child(4):hover{transform:translateY(-4px);}
+    .phone-shot{border-radius:18px;}
+    .phone-shot img{height:245px;}
+  }
+
   /* CAPACIDADES (replacing fake-portfolio with honest demonstration section) */
   .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   @media (max-width:760px){.cap-grid{grid-template-columns:1fr;}}
@@ -466,6 +640,7 @@
       <a href="#sobre">Sobre</a>
       <a href="#processo">Processo</a>
       <a href="#tecnologias">Tecnologias</a>
+      <a href="#projeto-lembra">Projetos</a>
       <a href="#capacidades">Capacidades</a>
     </div>
     <div class="nav-right">
@@ -678,6 +853,68 @@
     </div>
   </section>
 
+
+  <!-- PROJETO EM DESTAQUE -->
+  <section id="projeto-lembra">
+    <div class="container">
+      <div class="project-showcase">
+        <div class="project-copy">
+          <span class="project-badge mono">● PROJETO DESENVOLVIDO PELA KELSYS LABS</span>
+          <h2>Conheça o <span>Lembra+</span></h2>
+          <p class="project-lead">
+            Um aplicativo criado para ajudar pessoas a organizarem tarefas,
+            compromissos e áreas importantes da vida em um só lugar, com uma
+            experiência simples, visual e intuitiva.
+          </p>
+
+          <div class="project-features">
+            <div class="project-feature"><span>⏰</span>Lembretes por data e horário</div>
+            <div class="project-feature"><span>🗂️</span>Categorias para cada área da vida</div>
+            <div class="project-feature"><span>🔴</span>Prioridades e tarefas urgentes</div>
+            <div class="project-feature"><span>📚</span>Histórico de atividades</div>
+            <div class="project-feature"><span>👤</span>Perfil e progresso pessoal</div>
+            <div class="project-feature"><span>⚽</span>Espaço personalizado para futebol</div>
+          </div>
+
+          <div class="project-meta mono">
+            <span>FLUTTER</span>
+            <span>DART</span>
+            <span>ANDROID</span>
+            <span>PRODUTIVIDADE</span>
+            <span>EM DESENVOLVIMENTO</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#contato" class="btn-primary">Quero um aplicativo assim</a>
+            <a href="#galeria-lembra" class="btn-ghost">Ver telas do projeto</a>
+          </div>
+        </div>
+
+        <div class="phone-gallery" id="galeria-lembra" aria-label="Telas do aplicativo Lembra+">
+          <figure class="phone-shot">
+            <img src="01.jpeg" alt="Tela de lembretes do aplicativo Lembra+" loading="lazy">
+            <figcaption>Organização de lembretes</figcaption>
+          </figure>
+
+          <figure class="phone-shot">
+            <img src="05.jpeg" alt="Tela para criar um novo lembrete no aplicativo Lembra+" loading="lazy">
+            <figcaption>Novo lembrete por categoria</figcaption>
+          </figure>
+
+          <figure class="phone-shot">
+            <img src="03.jpeg" alt="Tela de futebol do aplicativo Lembra+" loading="lazy">
+            <figcaption>Área personalizada de futebol</figcaption>
+          </figure>
+
+          <figure class="phone-shot">
+            <img src="02.jpeg" alt="Tela de perfil do aplicativo Lembra+" loading="lazy">
+            <figcaption>Perfil e acompanhamento pessoal</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CAPACIDADES (honesto: sem estudos de caso fictícios) -->
   <section id="capacidades">
     <div class="container">
@@ -795,7 +1032,7 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReduced) {
     const revealTargets = document.querySelectorAll(
-      '.section-head, .service-card, .tech-card, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
+      '.section-head, .service-card, .tech-card, .project-copy, .phone-shot, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
     );
     revealTargets.forEach(el => el.classList.add('reveal-init'));
     const io = new IntersectionObserver((entries) => {
