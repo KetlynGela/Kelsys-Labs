@@ -507,6 +507,157 @@
     .phone-shot img{height:245px;}
   }
 
+
+  /* PROJETO DE IDENTIDADE VISUAL — ARIATI CONTABILIDADE */
+  #identidade-ariati{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 82% 22%, rgba(190,149,65,.13), transparent 34%),
+      radial-gradient(circle at 12% 78%, rgba(59,123,255,.07), transparent 32%),
+      var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+
+  .brand-showcase{
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+    gap:56px;
+    align-items:center;
+  }
+
+  .brand-visual{
+    position:relative;
+    padding:32px;
+    border:1px solid rgba(190,149,65,.24);
+    border-radius:24px;
+    background:
+      linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.01)),
+      rgba(5,7,13,.72);
+    box-shadow:0 28px 75px rgba(0,0,0,.32);
+  }
+
+  .brand-visual::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    z-index:-1;
+    border-radius:25px;
+    background:linear-gradient(135deg,rgba(190,149,65,.35),transparent 42%,rgba(59,123,255,.16));
+    filter:blur(18px);
+    opacity:.55;
+  }
+
+  .brand-logo-frame{
+    overflow:hidden;
+    border-radius:16px;
+    background:#fff;
+  }
+
+  .brand-logo-frame img{
+    width:100%;
+    display:block;
+    object-fit:contain;
+    transition:transform .45s ease;
+  }
+
+  .brand-visual:hover .brand-logo-frame img{
+    transform:scale(1.035);
+  }
+
+  .brand-caption{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:18px;
+    color:var(--muted);
+    font-size:11px;
+  }
+
+  .brand-copy h2{
+    font-size:clamp(32px,4.5vw,50px);
+    line-height:1.05;
+    margin-bottom:18px;
+  }
+
+  .brand-copy h2 span{
+    background:linear-gradient(90deg,#d2ae62,#8e672b);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .brand-copy > p{
+    color:var(--muted);
+    font-size:16px;
+    margin-bottom:26px;
+  }
+
+  .brand-details{
+    display:grid;
+    gap:12px;
+    margin-bottom:28px;
+  }
+
+  .brand-detail{
+    display:grid;
+    grid-template-columns:42px 1fr;
+    gap:12px;
+    align-items:start;
+    padding:14px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:rgba(5,7,13,.48);
+  }
+
+  .brand-detail-icon{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:rgba(190,149,65,.10);
+    border:1px solid rgba(190,149,65,.18);
+  }
+
+  .brand-detail strong{
+    display:block;
+    margin-bottom:4px;
+    font-size:13px;
+  }
+
+  .brand-detail p{
+    color:var(--muted);
+    font-size:12px;
+    margin:0;
+  }
+
+  .brand-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-bottom:28px;
+  }
+
+  .brand-tags span{
+    padding:7px 11px;
+    border:1px solid rgba(190,149,65,.22);
+    border-radius:999px;
+    color:#d2ae62;
+    background:rgba(190,149,65,.06);
+    font-size:11px;
+  }
+
+  @media (max-width:900px){
+    .brand-showcase{grid-template-columns:1fr;}
+    .brand-visual{order:2;}
+  }
+
+  @media (max-width:560px){
+    .brand-visual{padding:16px;border-radius:18px;}
+    .brand-caption{flex-direction:column;gap:5px;}
+  }
+
   /* CAPACIDADES (replacing fake-portfolio with honest demonstration section) */
   .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   @media (max-width:760px){.cap-grid{grid-template-columns:1fr;}}
@@ -915,6 +1066,77 @@
     </div>
   </section>
 
+
+  <!-- IDENTIDADE VISUAL EM DESTAQUE -->
+  <section id="identidade-ariati">
+    <div class="container">
+      <div class="brand-showcase">
+        <div class="brand-visual">
+          <div class="brand-logo-frame">
+            <img
+              src="logo-ariati-contabilidade.jpeg"
+              alt="Logotipo criado para a Ariati Contabilidade"
+              loading="lazy"
+            >
+          </div>
+          <div class="brand-caption mono">
+            <span>PROJETO DE IDENTIDADE VISUAL</span>
+            <span>ARIATI CONTABILIDADE</span>
+          </div>
+        </div>
+
+        <div class="brand-copy">
+          <span class="project-badge mono">✦ DESIGN E IDENTIDADE VISUAL</span>
+          <h2>Marca criada para a <span>Ariati Contabilidade</span></h2>
+          <p>
+            Projeto de logotipo desenvolvido para uma empresa do segmento
+            contábil. A proposta une um monograma personalizado, tipografia
+            elegante e tons dourados para comunicar credibilidade,
+            sofisticação e confiança.
+          </p>
+
+          <div class="brand-details">
+            <div class="brand-detail">
+              <div class="brand-detail-icon">✒️</div>
+              <div>
+                <strong>Monograma personalizado</strong>
+                <p>Composição exclusiva das iniciais para criar reconhecimento e personalidade.</p>
+              </div>
+            </div>
+
+            <div class="brand-detail">
+              <div class="brand-detail-icon">🎨</div>
+              <div>
+                <strong>Direção visual</strong>
+                <p>Uso de dourado e tipografia clássica para uma apresentação elegante e profissional.</p>
+              </div>
+            </div>
+
+            <div class="brand-detail">
+              <div class="brand-detail-icon">🏢</div>
+              <div>
+                <strong>Aplicação empresarial</strong>
+                <p>Identidade pensada para comunicar confiança dentro do segmento de contabilidade.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="brand-tags mono">
+            <span>LOGOTIPO</span>
+            <span>MONOGRAMA</span>
+            <span>IDENTIDADE VISUAL</span>
+            <span>CONTABILIDADE</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="#contato" class="btn-primary">Quero criar minha marca</a>
+            <a href="#projeto-lembra" class="btn-ghost">Ver projeto Lembra+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CAPACIDADES (honesto: sem estudos de caso fictícios) -->
   <section id="capacidades">
     <div class="container">
@@ -1032,7 +1254,7 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReduced) {
     const revealTargets = document.querySelectorAll(
-      '.section-head, .service-card, .tech-card, .project-copy, .phone-shot, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
+      '.section-head, .service-card, .tech-card, .project-copy, .phone-shot, .brand-copy, .brand-visual, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
     );
     revealTargets.forEach(el => el.classList.add('reveal-init'));
     const io = new IntersectionObserver((entries) => {
