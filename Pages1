@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelsys Labs — Tecnologia que transforma ideias em produto</title>
+<meta name="description" content="Estúdio de IA, automação, desenvolvimento de software e vídeo. Do primeiro rascunho ao lançamento, com atendimento direto e prazos combinados com transparência.">
+<meta property="og:title" content="Kelsys Labs — Tecnologia que transforma ideias em produto">
+<meta property="og:description" content="Estúdio de IA, automação, desenvolvimento de software e vídeo, para todo o Brasil, de forma remota.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='40' y2='40'%3E%3Cstop offset='0' stop-color='%233b7bff'/%3E%3Cstop offset='1' stop-color='%238b3ffb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='40' height='40' rx='8' fill='%2305070d'/%3E%3Cpath d='M12 6H18V16L26 6H33L21 20L33 34H26L18 24V34H12V6Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg: #05070d;
+    --surface: #0c1120;
+    --surface-2: #10182e;
+    --blue: #3b7bff;
+    --violet: #8b3ffb;
+    --accent: #2be899;
+    --text: #eef1fb;
+    --muted: #7d859e;
+    --line: #1c2440;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.06em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* background circuit texture */
+  .circuit-bg{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    opacity:0.35;
+    pointer-events:none;
+  }
+
+  /* NAV */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(5,7,13,0.75);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .logo-mark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+    font-weight:700;
+  }
+  .logo-mark svg{width:26px;height:26px;}
+  .logo-mark span{background:linear-gradient(90deg,var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .navlinks{display:flex;gap:36px;font-size:14px;color:var(--muted);}
+  .navlinks a:hover{color:var(--text);}
+  .nav-cta{
+    font-size:13px;
+    font-weight:600;
+    padding:9px 18px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--blue),var(--violet));
+    color:#fff;
+  }
+  .nav-right{display:flex;align-items:center;gap:18px;}
+  .menu-toggle{
+    display:none;
+    width:38px;height:38px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:transparent;
+    align-items:center;justify-content:center;
+    cursor:pointer;
+  }
+  .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{
+    content:'';
+    display:block;
+    width:16px;height:2px;
+    background:var(--text);
+    position:relative;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .menu-toggle span::before{position:absolute;top:-6px;}
+  .menu-toggle span::after{position:absolute;top:6px;}
+  .menu-toggle.open span{background:transparent;}
+  .menu-toggle.open span::before{transform:translateY(6px) rotate(45deg);}
+  .menu-toggle.open span::after{transform:translateY(-6px) rotate(-45deg);}
+  .mobile-panel{
+    display:none;
+    flex-direction:column;
+    gap:2px;
+    padding:8px 32px 20px;
+    border-top:1px solid var(--line);
+  }
+  .mobile-panel a{
+    padding:14px 4px;
+    font-size:15px;
+    color:var(--muted);
+    border-bottom:1px dashed var(--line);
+  }
+  .mobile-panel a:last-child{border-bottom:none;}
+  .mobile-panel.open{display:flex;}
+  @media (max-width:760px){
+    .navlinks{display:none;}
+    .menu-toggle{display:flex;}
+  }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:120px 32px 100px;
+    max-width:1120px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--muted);
+    padding:6px 14px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    margin-bottom:28px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+  .hero h1{
+    font-size:clamp(38px,6vw,68px);
+    font-weight:700;
+    line-height:1.05;
+    margin-bottom:22px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--blue),var(--violet));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{
+    color:var(--muted);
+    font-size:17px;
+    max-width:560px;
+    margin:0 auto 36px;
+  }
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:70px;}
+  .btn-primary{
+    padding:13px 26px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--blue),var(--violet));
+    font-weight:600;
+    font-size:14px;
+  }
+  .btn-ghost{
+    padding:13px 26px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    font-weight:600;
+    font-size:14px;
+    color:var(--text);
+  }
+  .btn-ghost:hover{border-color:var(--blue);}
+
+  /* hero circuit visual */
+  .hero-visual{
+    position:relative;
+    max-width:640px;
+    margin:0 auto;
+    height:120px;
+  }
+  .hero-visual svg{width:100%;height:100%;overflow:visible;}
+  .trace{fill:none;stroke:var(--line);stroke-width:1.5;}
+  .trace-glow{fill:none;stroke:url(#gradline);stroke-width:2;stroke-dasharray:14 400;}
+  .node{fill:var(--surface);stroke:var(--line);stroke-width:1.5;}
+  .node-lit{fill:var(--violet);}
+
+  /* SECTION shared */
+  section{position:relative;z-index:1;padding:100px 0;}
+  .section-head{max-width:600px;margin:0 auto 56px;text-align:center;}
+  .section-head .tag{
+    font-size:12px;
+    color:var(--blue);
+    margin-bottom:14px;
+    display:block;
+  }
+  .section-head h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px;}
+  .section-head p{color:var(--muted);font-size:15px;}
+
+  /* SERVICES */
+  #servicos{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  @media (max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.services-grid{grid-template-columns:1fr;}}
+  .service-card{
+    background:var(--bg);
+    padding:34px 26px;
+    transition:background .25s ease;
+  }
+  .service-card:hover{background:var(--surface-2);}
+  .service-icon{
+    width:44px;height:44px;
+    border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(59,123,255,.15),rgba(139,63,251,.15));
+    border:1px solid var(--line);
+    margin-bottom:20px;
+  }
+  .service-card h3{font-size:17px;margin-bottom:10px;}
+  .service-card p{font-size:13.5px;color:var(--muted);margin-bottom:16px;}
+  .service-card ul{list-style:none;font-size:12.5px;color:var(--muted);}
+  .service-card li{padding:4px 0;border-top:1px dashed var(--line);}
+  .service-card li:first-child{border-top:none;}
+
+  /* SOBRE */
+  #sobre .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  @media (max-width:800px){#sobre .container{grid-template-columns:1fr;}}
+  .about-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:34px;
+  }
+  .about-card .row{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line);font-size:13.5px;}
+  .about-card .row:first-child{border-top:none;}
+  .about-card .row span:first-child{color:var(--muted);}
+  #sobre h2{font-size:clamp(26px,4vw,36px);margin-bottom:20px;}
+  #sobre p{color:var(--muted);font-size:15px;margin-bottom:16px;}
+
+  /* PROCESSO */
+  #processo{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .process-line{position:relative;max-width:900px;margin:0 auto;}
+  .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;}
+  @media (max-width:800px){.process-steps{grid-template-columns:1fr;}}
+  .process-steps::before{
+    content:'';
+    position:absolute;
+    top:19px;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,var(--blue),var(--violet));
+    opacity:.4;
+  }
+  @media (max-width:800px){.process-steps::before{display:none;}}
+  .step{position:relative;padding-top:56px;}
+  .step-num{
+    position:absolute;top:0;left:0;
+    width:38px;height:38px;
+    border-radius:50%;
+    background:var(--bg);
+    border:1px solid var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--blue);
+  }
+  .step h4{font-size:16px;margin-bottom:8px;}
+  .step p{font-size:13.5px;color:var(--muted);}
+
+  /* CAPACIDADES (replacing fake-portfolio with honest demonstration section) */
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  @media (max-width:760px){.cap-grid{grid-template-columns:1fr;}}
+  .cap-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px;
+    background:linear-gradient(180deg,var(--surface),var(--bg));
+  }
+  .cap-card .cap-tag{
+    font-size:11px;
+    color:var(--violet);
+    margin-bottom:12px;
+    display:inline-block;
+  }
+  .cap-card h3{font-size:17px;margin-bottom:10px;}
+  .cap-card p{font-size:13.5px;color:var(--muted);}
+  .note-box{
+    margin-top:32px;
+    border:1px dashed var(--line);
+    border-radius:14px;
+    padding:20px 24px;
+    font-size:13px;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  /* CONTATO */
+  #contato{background:var(--surface);border-top:1px solid var(--line);}
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+  }
+  @media (max-width:800px){.contact-wrap{grid-template-columns:1fr;}}
+  .contact-info .item{
+    display:flex;gap:14px;align-items:flex-start;
+    margin-bottom:22px;
+  }
+  .contact-info .item .ico{
+    width:34px;height:34px;border-radius:9px;
+    background:var(--bg);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .contact-info .item h4{font-size:14px;margin-bottom:3px;}
+  .contact-info .item p{font-size:13px;color:var(--muted);}
+
+  form{display:flex;flex-direction:column;gap:14px;}
+  form input, form textarea, form select{
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:13px 16px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+  }
+  form input:focus, form textarea:focus, form select:focus{
+    outline:none;border-color:var(--blue);
+  }
+  form textarea{resize:vertical;min-height:100px;}
+  form button{
+    padding:14px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--blue),var(--violet));
+    color:#fff;font-weight:600;font-size:14px;
+    cursor:pointer;
+  }
+
+  footer{
+    padding:36px 32px;
+    text-align:center;
+    font-size:12.5px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+  }
+
+  ::selection{background:var(--violet);color:#fff;}
+
+  /* scroll reveal (JS adds .reveal-init on load if motion is allowed, then .reveal-in when in view) */
+  .reveal-init{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal-init.reveal-in{opacity:1;transform:translateY(0);}
+
+  /* subtle accent glow on hover for cards, ties the whole page to one signature color */
+  .service-card:hover .service-icon, .cap-card:hover .cap-tag{
+    color:var(--accent);
+  }
+  .service-card:hover{box-shadow:inset 0 1px 0 rgba(43,232,153,.12);}
+
+  /* floating WhatsApp button */
+  .wa-float{
+    position:fixed;
+    right:22px;bottom:22px;
+    z-index:60;
+    width:58px;height:58px;
+    border-radius:50%;
+    background:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 24px rgba(43,232,153,.35);
+    animation:wa-pulse 2.4s infinite;
+  }
+  .wa-float svg{width:28px;height:28px;}
+  @keyframes wa-pulse{
+    0%,100%{box-shadow:0 6px 24px rgba(43,232,153,.35);}
+    50%{box-shadow:0 6px 30px rgba(43,232,153,.6);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo-mark">
+      <svg viewBox="0 0 40 40" fill="none">
+        <defs>
+          <linearGradient id="gk" x1="0" y1="0" x2="40" y2="40">
+            <stop offset="0" stop-color="#3b7bff"/>
+            <stop offset="1" stop-color="#8b3ffb"/>
+          </linearGradient>
+        </defs>
+        <path d="M10 4H18V16L28 4H37L23 20L37 36H28L18 24V36H10V4Z" fill="url(#gk)"/>
+      </svg>
+      <span>KELSYS LABS</span>
+    </div>
+    <div class="navlinks">
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#processo">Processo</a>
+      <a href="#capacidades">Capacidades</a>
+    </div>
+    <div class="nav-right">
+      <a href="#contato" class="nav-cta">Solicitar orçamento</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobile-panel">
+    <a href="#servicos">Serviços</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#processo">Processo</a>
+    <a href="#capacidades">Capacidades</a>
+    <a href="#contato">Solicitar orçamento</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow mono"><span class="dot"></span> DISPONÍVEL PARA NOVOS PROJETOS</span>
+    <h1>Tecnologia que <span class="grad">transforma</span><br>ideias em produto.</h1>
+    <p>Estúdio independente de IA, automação, desenvolvimento de software e criação de vídeo — do primeiro rascunho ao lançamento.</p>
+    <div class="hero-ctas">
+      <a href="#contato" class="btn-primary">Solicitar orçamento</a>
+      <a href="#servicos" class="btn-ghost">Ver serviços</a>
+    </div>
+
+    <div class="hero-visual">
+      <svg viewBox="0 0 640 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="gradline" x1="0" y1="0" x2="640" y2="0">
+            <stop offset="0" stop-color="#3b7bff"/>
+            <stop offset="1" stop-color="#8b3ffb"/>
+          </linearGradient>
+        </defs>
+        <path class="trace" d="M20 60 H140 L170 30 H260 V90 H340 L370 60 H460 L490 90 H620"/>
+        <path class="trace-glow" d="M20 60 H140 L170 30 H260 V90 H340 L370 60 H460 L490 90 H620">
+          <animate attributeName="stroke-dashoffset" from="0" to="-800" dur="5s" repeatCount="indefinite"/>
+        </path>
+        <circle class="node" cx="20" cy="60" r="5"/>
+        <circle class="node" cx="170" cy="30" r="5"/>
+        <circle class="node" cx="260" cy="90" r="5"/>
+        <circle class="node" cx="370" cy="60" r="5"/>
+        <circle class="node" cx="490" cy="90" r="5"/>
+        <circle class="node node-lit" cx="620" cy="90" r="6"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SERVICOS -->
+  <section id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag mono">// SERVIÇOS</span>
+        <h2>Quatro frentes, um só objetivo</h2>
+        <p>Cada projeto pode envolver uma frente isolada ou uma combinação delas, conforme a necessidade do seu negócio.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🧠</div>
+          <h3>Inteligência Artificial</h3>
+          <p>Soluções de IA aplicadas ao seu negócio.</p>
+          <ul>
+            <li>Chatbots e assistentes virtuais</li>
+            <li>Automação com IA generativa</li>
+            <li>Análise e organização de dados</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Automação</h3>
+          <p>Processos manuais viram fluxos automáticos.</p>
+          <ul>
+            <li>Integrações entre sistemas e planilhas</li>
+            <li>Automação de tarefas repetitivas</li>
+            <li>Fluxos de notificação e relatórios</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3>Desenvolvimento de Software</h3>
+          <p>Sites, sistemas e ferramentas sob medida.</p>
+          <ul>
+            <li>Landing pages e sites institucionais</li>
+            <li>Sistemas web simples</li>
+            <li>Painéis e ferramentas internas</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎬</div>
+          <h3>Edição de Vídeo & Criatividade</h3>
+          <p>Conteúdo visual pronto para publicar.</p>
+          <ul>
+            <li>Edição para redes sociais</li>
+            <li>Motion graphics simples</li>
+            <li>Identidade visual de conteúdo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div>
+        <span class="tag mono">// SOBRE</span>
+        <h2>Um estúdio novo, feito para crescer com quem confia primeiro</h2>
+        <p>A Kelsys Labs nasceu para unir tecnologia, automação e criatividade em um único lugar — sem burocracia e com atenção direta a cada cliente.</p>
+        <p>Por ser um estúdio no início de sua trajetória, cada projeto recebe atenção total do início ao fim, com prazos combinados com transparência e acompanhamento próximo.</p>
+      </div>
+      <div class="about-card mono">
+        <div class="row"><span>Status</span><span>MEI ativo</span></div>
+        <div class="row"><span>Atendimento</span><span>Remoto, todo o Brasil</span></div>
+        <div class="row"><span>Foco</span><span>IA · Automação · Dev · Vídeo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section id="processo">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag mono">// COMO TRABALHO</span>
+        <h2>Um processo simples, em quatro etapas</h2>
+        <p>A ordem importa: cada etapa depende da anterior para o projeto sair como combinado.</p>
+      </div>
+      <div class="process-line">
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num mono">01</div>
+            <h4>Diagnóstico</h4>
+            <p>Entendo o problema, o objetivo e o prazo antes de propor qualquer solução.</p>
+          </div>
+          <div class="step">
+            <div class="step-num mono">02</div>
+            <h4>Proposta</h4>
+            <p>Envio escopo, prazo e valor fechado — sem letras miúdas.</p>
+          </div>
+          <div class="step">
+            <div class="step-num mono">03</div>
+            <h4>Execução</h4>
+            <p>Desenvolvimento com atualizações periódicas de progresso.</p>
+          </div>
+          <div class="step">
+            <div class="step-num mono">04</div>
+            <h4>Entrega & suporte</h4>
+            <p>Entrega com ajustes inclusos e suporte no pós-entrega.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPACIDADES (honesto: sem estudos de caso fictícios) -->
+  <section id="capacidades">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag mono">// CAPACIDADES</span>
+        <h2>O que posso construir para você</h2>
+        <p>A Kelsys Labs está começando agora — ainda não há projetos de clientes publicados. Estes são exemplos reais do que cada frente entrega.</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card">
+          <span class="cap-tag mono">IA</span>
+          <h3>Assistente de atendimento</h3>
+          <p>Um chatbot que responde dúvidas frequentes de clientes e encaminha casos complexos para você, treinado com as informações do seu negócio.</p>
+        </div>
+        <div class="cap-card">
+          <span class="cap-tag mono">AUTOMAÇÃO</span>
+          <h3>Planilha que se atualiza sozinha</h3>
+          <p>Formulário de pedidos conectado direto a uma planilha de controle, sem digitação manual.</p>
+        </div>
+        <div class="cap-card">
+          <span class="cap-tag mono">DEV</span>
+          <h3>Site institucional em 1 página</h3>
+          <p>Site rápido, responsivo, com formulário de contato funcional — pronto para publicar.</p>
+        </div>
+        <div class="cap-card">
+          <span class="cap-tag mono">VÍDEO</span>
+          <h3>Pacote de conteúdo para redes</h3>
+          <p>Edição de vídeos curtos com cortes, legendas e identidade visual para Instagram/TikTok.</p>
+        </div>
+      </div>
+      <div class="note-box">
+        Quer ser o primeiro case da Kelsys Labs? Projetos iniciais têm condição especial de lançamento.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag mono">// CONTATO</span>
+        <h2>Vamos conversar sobre o seu projeto</h2>
+        <p>Responda o formulário ou chame direto pelos canais abaixo.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <div class="item">
+            <div class="ico">📱</div>
+            <div><h4>WhatsApp</h4><p>Resposta rápida, direto comigo: <a href="https://wa.me/5541995496397" target="_blank" rel="noopener" style="color:var(--accent)">(41) 99549-6397</a></p></div>
+          </div>
+          <div class="item">
+            <div class="ico">📍</div>
+            <div><h4>Atendimento</h4><p>Remoto, para todo o Brasil</p></div>
+          </div>
+          <div class="item">
+            <div class="ico">⏱️</div>
+            <div><h4>Prazo de resposta</h4><p>Retorno todas as mensagens em até 24h</p></div>
+          </div>
+        </div>
+        <form id="contact-form">
+          <input type="text" id="f-name" placeholder="Seu nome" required>
+          <input type="email" id="f-email" placeholder="E-mail" required>
+          <select id="f-service">
+            <option value="">Qual serviço você precisa?</option>
+            <option>Inteligência Artificial</option>
+            <option>Automação</option>
+            <option>Desenvolvimento de Software</option>
+            <option>Edição de Vídeo</option>
+            <option>Mais de um serviço</option>
+          </select>
+          <textarea id="f-message" placeholder="Conte um pouco sobre o seu projeto"></textarea>
+          <button type="submit">Enviar pelo WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Kelsys Labs — Tecnologia que transforma ideias.
+</footer>
+
+<a class="wa-float" href="https://wa.me/5541995496397" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none"><path d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.4.6 4.6 1.8 6.6L3 29l6.9-2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.7C28.7 8.7 23 3 16 3z" fill="#05070d"/><path d="M22 18.4c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.4.2-.6.1-.3-.1-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.3z" fill="#fff"/></svg>
+</a>
+
+<script>
+  // mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobilePanel = document.getElementById('mobile-panel');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobilePanel.classList.toggle('open');
+    menuToggle.classList.toggle('open', isOpen);
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobilePanel.classList.remove('open');
+    menuToggle.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // contact form -> opens WhatsApp with the message prefilled (no backend needed yet)
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const service = document.getElementById('f-service').value || 'Não especificado';
+    const message = document.getElementById('f-message').value.trim();
+    const text = `Olá! Meu nome é ${name} (${email}).\nServiço de interesse: ${service}.\n\n${message}`;
+    window.open(`https://wa.me/5541995496397?text=${encodeURIComponent(text)}`, '_blank');
+  });
+
+  // scroll reveal, skipped entirely for users who prefer reduced motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    const revealTargets = document.querySelectorAll(
+      '.section-head, .service-card, #sobre .about-card, #sobre > .container > div:first-child, .step, .cap-card, .contact-info, form'
+    );
+    revealTargets.forEach(el => el.classList.add('reveal-init'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealTargets.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
